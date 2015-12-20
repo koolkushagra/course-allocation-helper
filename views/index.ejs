@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Courses - Winter Semester</title>
+
+    <meta name="description" content="Site for planning courses">
+    <meta name="author" content="Kushagra">
+
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/bootstrap-theme.min.css">
+    <link href="/css/style.css" rel="stylesheet">
+
+    <style>
+    Table#myTable
+    {
+    border-collapse: collapse;
+    }
+    </style>
+
+  </head>
+  <body>
+    <div class="container-fluid">
+      	<div class="row">
+		<div class="col-md-12">
+			<div class="page-header">
+				<h1>
+					VIT<small class="pull-right">Winter Sem Courses</small>
+				</h1>
+			</div>
+    </div>
+	</div>
+	<div class="row">
+	  <div class="col-md-12">
+	    <%if(type != "FAV"){%>
+      <div class="form-group pull-left dropdown">
+	  <select id="school-c">
+        <option value="SCSE" <%if(type == "SCSE"){%>selected<%}%> > SCSE </option>
+        <option value="SITE" <%if(type == "SITE"){%>selected<%}%> >SITE</option>
+        <option value="SMBS"<%if(type == "SMBS"){%>selected<%}%> >SMBS</option>
+        <option value="SAS" <%if(type == "SAS"){%>selected<%}%> >SAS</option>
+        <option value="SENSE" <%if(type == "SENSE"){%>selected<%}%> >SENSE</option>
+        <option value="SBST" <%if(type == "SBST"){%>selected<%}%> >SBST</option>
+        <option value="SSL" <%if(type == "SSL"){%>selected<%}%> >SSL</option>
+        <option value="VITBS" <%if(type == "VITBS"){%>selected<%}%> >VITBS</option>
+        </select>
+        </div>
+        <a href="/faculty" class="btn btn-default pull-right" role="button">See Faculties</a>
+         <%}%>
+         <%if(type == "FAV"){%>
+            <h3>Subjects by this faculty</h3>
+            <a href="/" class="btn btn-default pull-right" role="button">See Courses</a>
+         <%}%>
+      </div>
+      </div>
+    <div class="row"> 
+		<div class="col-md-12">
+      <div class="form-group pull-right" style="margin-top : 24px">
+        <input type="text" class="search form-control" placeholder="What you looking for?">
+      </div>
+      </div>
+      </div>
+    
+	<div class="row">
+	  <div class="col-md-12" style="overflow-y:scroll; height: 500px;">
+            <table id='myTable' class="table table-hover results"  width="100%">
+            <thead>
+            <tr>
+            <th> Course Code </th>
+            <th> Course Title </th>
+            <th> Course Type </th>
+            <%if(type == "FAV"){%><th> Slot </th><%}%>
+            <th> L </th>
+            <th> T </th>
+            <th> P </th>
+            <th> C </th>
+            <th> J </th>
+            <th> Program </th>
+            </tr>
+            </thead>
+            <tbody>
+            <%
+            var m = "YAHoo";
+            for(x in data){
+            if( data[x].code != m){
+            %>
+            
+            <tr>
+            <td class="c-code"><%=data[x].code%></td>
+            <td><%-data[x].title%></td>
+            <td><%=data[x].type%></td>
+            <%if(type == "FAV"){%><td><%=data[x].slot%></td><%}%>
+            <td><%=data[x].L%></td>
+            <td><%=data[x].T%></td>
+            <td><%=data[x].P%></td>
+            <td><%=data[x].C%></td>
+            <td><%=data[x].J%></td>
+            <td><%=data[x].program%></td>
+            </tr>
+            <%
+            m = data[x].code;
+            }
+            }%>
+            </tbody>
+            </table>
+          </div>
+	</div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/scripts.js"></script>
+    <script>
+      $('.table > tbody > tr').click(function() {
+          console.log($(this).find(".c-code").text());
+          document.location.href = "https://testing-koolkushagra.c9users.io/course/" + $(this).find(".c-code").text();
+        });
+        
+      $("#school-c").change(function(){
+        
+          document.location.href = "https://testing-koolkushagra.c9users.io/school/" + $(this).val();
+      });
+      
+    </script>
+  </body>
+</html>

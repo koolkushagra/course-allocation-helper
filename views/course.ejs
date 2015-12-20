@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Courses - Winter Semester</title>
+
+    <meta name="description" content="Site for planning courses">
+    <meta name="author" content="Kushagra">
+
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/bootstrap-theme.min.css">
+    <link href="/css/style.css" rel="stylesheet">
+
+    <style>
+    Table#myTable
+    {
+    border-collapse: collapse;
+    }
+    </style>
+
+  </head>
+  <body>
+    <div class="container-fluid">
+      	<div class="row">
+		<div class="col-md-12">
+			<div class="page-header">
+				<h1>
+					VIT<small class="pull-right">Winter Sem Courses</small>
+				</h1>
+			</div>
+    </div>
+	</div>
+	<div class="row">
+		<div class="col-md-12">
+      <div class="form-group pull-right">
+        <input type="text" class="search form-control" placeholder="What you looking for?">
+      </div>
+      </div>
+      </div>
+	<div class="row">
+	  <div class="col-md-12" style="overflow-y:scroll; height: 500px;">
+            <table id='myTable' class="table table-hover results"  width="100%">
+            <thead>
+            <tr>
+            <th> Faculty Name </th>
+            <th> Slot </th>
+            <th> Class Number </th>
+            <th> No of Seats </th>
+            <th> Venue </th>
+            </tr>
+            </thead>
+            <tbody>
+            <%
+            for(x in data){
+            %>
+            <tr>
+            <%if(data[x].fac_name != ""){%>
+            <td><%=data[x].fac_name%></td>
+            <%
+            }
+            else{%>
+            <td>Not Available</td>
+            <%}%>
+            <td><%-data[x].slot%></td>
+            <td><%=data[x].nbr%></td>
+            <td><%=data[x].seats%></td>
+            <td><%=data[x].venue%></td>
+            </tr>
+            <%
+            }%>
+            </tbody>
+            </table>
+          </div>
+	</div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/scripts.js"></script>
+    <script>
+      $('.table > tbody > tr').click(function() {
+          console.log($(this).find(".c-code").text());
+        });
+    </script>
+  </body>
+</html>
