@@ -58,11 +58,11 @@
             %>
             <tr>
             <%if(data[x].fac_name != ""){%>
-            <td><%=data[x].fac_name%></td>
+            <td class="f-name"><%=data[x].fac_name%></td>
             <%
             }
             else{%>
-            <td>Not Available</td>
+            <td class="f-name">Not Available</td>
             <%}%>
             <td><%-data[x].slot%></td>
             <td><%=data[x].nbr%></td>
@@ -82,6 +82,7 @@
     <script>
       $('.table > tbody > tr').click(function() {
           console.log($(this).find(".c-code").text());
+                    document.location.href = "http://104.236.106.34:3000/faculty/" + $(this).find(".f-name").text();
         });
     </script>
   </body>
